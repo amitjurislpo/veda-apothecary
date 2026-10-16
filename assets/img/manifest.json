@@ -1,0 +1,97 @@
+{
+ "bowl-amla.webp": {
+  "w": 820,
+  "h": 373,
+  "bytes": 27270
+ },
+ "bowl-ashwagandha.webp": {
+  "w": 820,
+  "h": 310,
+  "bytes": 37952
+ },
+ "bowl-base-amla.webp": {
+  "w": 820,
+  "h": 373,
+  "bytes": 26512
+ },
+ "bowl-base-ashwagandha.webp": {
+  "w": 820,
+  "h": 310,
+  "bytes": 35440
+ },
+ "bowl-base-moringa.webp": {
+  "w": 820,
+  "h": 367,
+  "bytes": 37268
+ },
+ "bowl-base-triphala.webp": {
+  "w": 820,
+  "h": 320,
+  "bytes": 37278
+ },
+ "bowl-moringa.webp": {
+  "w": 820,
+  "h": 367,
+  "bytes": 46184
+ },
+ "bowl-triphala.webp": {
+  "w": 820,
+  "h": 320,
+  "bytes": 44380
+ },
+ "logo-light.png": {
+  "w": 360,
+  "h": 258,
+  "bytes": 56406
+ },
+ "logo.png": {
+  "w": 360,
+  "h": 258,
+  "bytes": 57123
+ },
+ "mark.png": {
+  "w": 170,
+  "h": 145,
+  "bytes": 32919
+ },
+ "photo-amla.webp": {
+  "w": 1000,
+  "h": 421,
+  "bytes": 23052
+ },
+ "photo-ashwagandha.webp": {
+  "w": 1000,
+  "h": 371,
+  "bytes": 37474
+ },
+ "photo-moringa.webp": {
+  "w": 1000,
+  "h": 371,
+  "bytes": 39044
+ },
+ "photo-triphala.webp": {
+  "w": 1000,
+  "h": 371,
+  "bytes": 43678
+ },
+ "pouch-amla.webp": {
+  "w": 620,
+  "h": 861,
+  "bytes": 64222
+ },
+ "pouch-ashwagandha.webp": {
+  "w": 620,
+  "h": 861,
+  "bytes": 74732
+ },
+ "pouch-moringa.webp": {
+  "w": 620,
+  "h": 861,
+  "bytes": 69662
+ },
+ "pouch-triphala.webp": {
+  "w": 620,
+  "h": 861,
+  "bytes": 78212
+ }
+}
