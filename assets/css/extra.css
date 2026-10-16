@@ -1,0 +1,168 @@
+/* Additions for the multi-page build. The approved design lives in site.css; this file only adds
+   what real, crawlable pages need (accessibility helpers, SEO copy blocks, policy pages). */
+
+img{width:auto;height:auto}
+.sr-only{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.skip-link{position:absolute;left:12px;top:-60px;z-index:600;background:var(--ink);color:#fff;padding:12px 18px;border-radius:12px;transition:top .2s}
+.skip-link:focus{top:12px}
+a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+
+/* logo images carry width/height attributes for layout stability; keep the designed heights */
+
+/* hero intro line */
+.hero-lead{max-width:640px;margin:0 auto 22px;text-align:center;font-size:18px;color:var(--muted)}
+
+/* SEO copy blocks */
+.wrap.narrow{max-width:860px}
+.seo-intro{padding:70px 0 30px}
+.seo-intro h2{margin-bottom:18px}
+.seo-intro p{font-size:17px;line-height:1.75;color:var(--ink);margin:0 0 16px}
+.seo-intro p a,.prose a,.ba-body a,.lead a{text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--saffron)}
+.goal-links{list-style:none;padding:0;margin:30px 0 0;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.goal-links a{display:grid;gap:2px;padding:18px 20px;border-radius:20px;background:var(--paper);border:1px solid var(--line);text-decoration:none!important;transition:transform .3s var(--bounce),border-color .2s}
+.goal-links a:hover{transform:translateY(-4px);border-color:var(--teal)}
+.goal-links b{font-family:var(--serif);font-weight:800;font-size:22px;letter-spacing:-.02em}
+.goal-links span{font-size:14px;color:var(--muted)}
+.h-sub{font-family:var(--serif);font-weight:800;font-size:26px;letter-spacing:-.02em;margin:34px 0 12px}
+.steps-list{padding-left:22px;margin:0 0 20px}
+.steps-list li{margin-bottom:10px;line-height:1.7}
+.ways{list-style:none;padding:0;margin:0;display:grid;gap:12px}
+.ways li{display:grid;gap:2px;padding:16px 20px;border-radius:18px;background:var(--paper);border:1px solid var(--line)}
+.ways b{font-family:var(--serif);font-size:19px;font-weight:700}
+.ways span{color:var(--muted);font-size:15.5px}
+table.facts{width:100%;border-collapse:collapse;margin-top:26px;font-size:15px}
+table.facts th,table.facts td{text-align:left;padding:12px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+table.facts th{width:38%;font-weight:600;color:var(--brown2)}
+.grid3.feat{grid-template-columns:repeat(auto-fit,minmax(280px,360px));justify-content:center}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px}
+.why-grid>div{background:var(--paper);border:1px solid var(--line);border-radius:28px;padding:28px}
+.why-grid h3{font-family:var(--serif);font-weight:800;font-size:24px;letter-spacing:-.02em;margin:8px 0}
+.why-grid p{margin:0;color:var(--muted)}
+.center-cta{text-align:center}
+
+/* blog hub */
+.bl-lead{max-width:620px;color:#CFE0C9;font-size:18px;margin:0 0 28px}
+.bl-hero .crumbs,.bl-hero .crumbs a{color:#CFE0C9}
+.ba-head .crumbs{margin-bottom:14px}
+.ba-toc a{display:block}
+.bl-pills a{display:inline-flex;align-items:center}
+
+/* chips as links */
+a.chip{display:inline-flex;align-items:center;gap:8px}
+
+/* policy pages */
+.prose{font-size:17px;line-height:1.8}
+.prose h2{font-family:var(--serif);font-weight:800;font-size:28px;letter-spacing:-.02em;margin:38px 0 10px}
+.prose ul{padding-left:22px}
+.prose li{margin-bottom:8px}
+.prose .meta{color:var(--muted);font-size:14px;margin:0 0 20px}
+
+/* forms */
+.form-note{font-size:14px;color:var(--teal);margin:12px 0 0;min-height:1.2em}
+.faq-links{display:flex;gap:12px;flex-wrap:wrap}
+.flinks a{text-decoration:underline;text-underline-offset:3px}
+footer.site address a{color:inherit}
+
+/* footer: five columns on wide screens */
+.fgrid{grid-template-columns:1.5fr 1fr 1fr 1fr 1.3fr;gap:36px}
+.pdp .acc details:first-child{border-top:1px solid var(--line)}
+
+@media (max-width:1080px){
+  .fgrid{grid-template-columns:1fr 1fr 1fr}
+  .goal-links{grid-template-columns:1fr 1fr}
+  .why-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:760px){
+  .fgrid{grid-template-columns:1fr 1fr}
+  .goal-links,.why-grid{grid-template-columns:1fr}
+  .seo-intro{padding-top:46px}
+  .hero-lead{font-size:16px;padding:0 6px}
+}
+@media (max-width:480px){.fgrid{grid-template-columns:1fr}}
+
+/* product gallery: let percentage max-heights resolve inside the aspect-ratio box */
+.main-img{grid-template-columns:100%;grid-template-rows:100%}
+.info-list div div{display:block}
+.info-list a{color:var(--muted);font-size:15px;text-decoration:underline;text-underline-offset:3px}
+
+/* mobile hero accordion: the open panel keeps its 470px height (flex:3.4 collapsed it in a column) */
+@media (max-width:760px){.d-panel.on{flex:none}}
+
+/* contrast: white on #0F8B74 was 4.2:1 */
+.save{background:#0B6F5C}
+footer .fh{display:block}
+
+.ba-author img{object-fit:contain}
+
+/* ===== Compact spacing & type scale (overrides) ===== */
+body{font-size:16px}
+section{padding:64px 0}
+.d-quiz,.d-io,.d-list,.d-faq,.d-cert,.jr-sec,.bl-home{padding-top:72px;padding-bottom:72px}
+.d-day{padding:72px 0 64px}
+.d-tk{padding:28px 0 72px}
+.pour{padding:72px 0 56px}
+.seo-intro{padding:44px 0 20px}
+.sec-head{margin-bottom:32px}
+.h-sec{font-size:clamp(28px,3.6vw,48px)}
+.phead{padding:52px 0 44px}
+.phead h1,.pinfo h1{font-size:clamp(32px,4.4vw,54px)}
+.d-nl h2,.ticket .l h2,.ps-left h3{font-size:clamp(30px,4vw,52px)}
+.d-rowi h3{font-size:clamp(26px,3.6vw,52px)}
+.d-not li{font-size:clamp(22px,2.6vw,34px)}
+.bl-hero h1,.art-hero h1,.ba-head h1{font-size:clamp(32px,4.2vw,56px)}
+.jr-feature h2{font-size:clamp(28px,3vw,42px)}
+.lead,.hero-lead,.bl-lead{font-size:16px}
+.prose,.art-body{font-size:16.5px}
+footer.site{margin-top:64px;padding-top:56px}
+@media (max-width:760px){
+  section{padding:48px 0}
+  .d-quiz,.d-io,.d-list,.d-faq,.d-cert,.jr-sec,.bl-home{padding-top:52px;padding-bottom:52px}
+  footer.site{margin-top:44px}
+}
+
+/* Product scroll scene: pin just below the sticky menu so there is no empty band after the marquee */
+@media (min-width:1081px){
+  .ps-pin{top:92px;height:calc(100vh - 92px)}
+  .ps-grid{align-items:center;padding-top:0}
+  .ps-stage{height:66vh}
+  .ps-word{top:50%}
+}
+
+/* Product scene dots: make the active one stand out */
+.ps-dots button i{opacity:.35}
+.ps-dots button.on i{width:38px;opacity:1;background:var(--saffron);box-shadow:0 0 0 3px color-mix(in srgb,var(--saffron) 25%,transparent)}
+
+/* Footer: tighter, no extra divider lines */
+footer.site{padding-top:48px;margin-top:48px}
+footer.site .disclaimer{border-top:0;margin-top:28px;padding-top:0}
+footer.site .disclaimer .box{border:0;padding:0;background:none}
+footer.site .fgrid{gap:28px}
+footer.site .flogo{margin-bottom:14px}
+footer.site .fh{margin-bottom:12px}
+footer.site ul{gap:8px}
+
+/* ===== Type scale (standard web ratios) — h1 36–52 · h2 28–38 · h3 20–24 · body 16 ===== */
+.phead h1,.pinfo h1,.bl-hero h1,.art-hero h1,.ba-head h1{font-size:clamp(32px,3.8vw,48px);line-height:1.1}
+.h-sec,.news h2,.d-nl h2,.ticket .l h2,.jr-feature h2,.d-rowi h3,.ps-left h3{font-size:clamp(26px,3vw,38px);line-height:1.12}
+.d-result h3{font-size:clamp(28px,3.4vw,40px)}
+.d-not li{font-size:clamp(20px,2.2vw,28px)}
+.d-not h3,.d-in h3,.btile h3,.step h4,.art-body h3,.dhead h3,.co h2,.d-time h4,.d-time h3{font-size:24px}
+.ba-body h2{font-size:26px}
+.pcard h3,.reason h4,.rcard h4,.jr-body h3,.art-prod h4,.art-prod h3,.proc p{font-size:21px}
+.bc-body h3{font-size:19px}
+.d-faq summary{font-size:18px;padding:18px 22px}
+.d-stats b,.d-in .big{font-size:clamp(40px,4.4vw,52px)}
+.step .n{font-size:64px}
+.ticket .pr .price,.bundle .pricebox .price{font-size:40px}
+.pinfo .pp .price{font-size:30px}
+.price{font-size:20px}
+.art-intro{font-size:18px}
+.quote{font-size:clamp(22px,2.2vw,28px)}
+.sig div b{font-size:32px}
+.d-mq span{font-size:20px}
+.marquee span{font-size:18px}
+@media (max-width:760px){
+  .phead h1,.pinfo h1,.bl-hero h1,.art-hero h1,.ba-head h1{font-size:30px}
+  .h-sec,.news h2,.d-nl h2,.ticket .l h2,.jr-feature h2,.d-rowi h3,.ps-left h3{font-size:26px}
+  .pcard h3{font-size:18px}
+}
