@@ -150,4 +150,4 @@ ${BLOG.map((b) => `- [${plain(b.title)}](${abs(blogUrl(b))}): ${plain(b.dek)}`).
 `);
 write('_headers', `/assets/*\n  Cache-Control: public, max-age=31536000, immutable\n/*.html\n  Cache-Control: public, max-age=0, must-revalidate\n/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n`);
 
-console.log(`Built ${pages.length} pages → dist/  (css v${ASSET_V.css}, js v${ASSET_V.js})`);
+console.log(`Built ${pages.length} pages → ${path.basename(DIST)}/  (css v${ASSET_V.css}, js v${ASSET_V.js})`);

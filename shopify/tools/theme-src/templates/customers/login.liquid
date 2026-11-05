@@ -1,0 +1,22 @@
+<div class="page">
+  <div class="phead"><div class="wrap"><nav class="crumbs" aria-label="Breadcrumb"><a href="{{ routes.root_url }}">Home</a> / <span aria-current="page">Account</span></nav><h1 class="h-display">Sign <span class="it">in</span></h1></div></div>
+  <section style="padding-top:30px"><div class="wrap narrow">
+    <div class="card" id="login">
+      {%- form 'customer_login' -%}
+        {%- if form.errors %}<p class="form-note">{{ form.errors | default_errors }}</p>{% endif -%}
+        <div class="fgrid2"><div class="field full"><input id="le" type="email" name="customer[email]" placeholder=" " autocomplete="email" required><label for="le">Email</label></div><div class="field full"><input id="lp" type="password" name="customer[password]" placeholder=" " autocomplete="current-password" required><label for="lp">Password</label></div></div>
+        <button class="btn block" type="submit" style="margin-top:16px">Sign in</button>
+        <p style="margin-top:14px;font-size:14px"><a href="#recover" style="text-decoration:underline">Forgot your password?</a> · <a href="{{ routes.account_register_url }}" style="text-decoration:underline">Create an account</a></p>
+      {%- endform -%}
+    </div>
+    <div class="card" id="recover" style="margin-top:24px">
+      <h2 class="h-sec" style="font-size:24px">Reset your password</h2>
+      {%- form 'recover_customer_password' -%}
+        {%- if form.posted_successfully? %}<p class="form-note">We've sent you an email with a link to reset your password.</p>{% endif -%}
+        {%- if form.errors %}<p class="form-note">{{ form.errors | default_errors }}</p>{% endif -%}
+        <div class="fgrid2"><div class="field full"><input id="re" type="email" name="email" placeholder=" " autocomplete="email" required><label for="re">Email</label></div></div>
+        <button class="btn ghost block" type="submit" style="margin-top:16px">Send reset link</button>
+      {%- endform -%}
+    </div>
+  </div></section>
+</div>

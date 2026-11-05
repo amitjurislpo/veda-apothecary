@@ -1,0 +1,33 @@
+{%- case collection.handle -%}
+  {%- when 'all' -%}{% render 'collection-all' %}
+  {%- when 'energy' -%}{% render 'collection-energy' %}
+  {%- when 'calm' -%}{% render 'collection-calm' %}
+  {%- when 'digestion' -%}{% render 'collection-digestion' %}
+  {%- when 'immunity' -%}{% render 'collection-immunity' %}
+  {%- else -%}
+<div class="page">
+  <div class="phead"><div class="wrap"><nav class="crumbs" aria-label="Breadcrumb"><a href="{{ routes.root_url }}">Home</a> / <span aria-current="page">{{ collection.title }}</span></nav><h1 class="h-display">{{ collection.title }}</h1>
+    {%- if collection.description != blank %}<div class="lead" style="max-width:640px">{{ collection.description }}</div>{% endif %}</div></div>
+  <section style="padding-top:30px">
+    <div class="wrap">
+      {%- paginate collection.products by 24 -%}
+      <div class="grid3">
+        {%- for p in collection.products -%}
+          {% render 'product-card', p: p %}
+        {%- else -%}
+          <p class="lead">No products in this collection yet.</p>
+        {%- endfor -%}
+      </div>
+      {%- if paginate.pages > 1 %}<div style="margin-top:30px">{{ paginate | default_pagination }}</div>{% endif -%}
+      {%- endpaginate -%}
+    </div>
+  </section>
+</div>
+{%- endcase -%}
+
+{% schema %}
+{
+  "name": "Collection page",
+  "settings": []
+}
+{% endschema %}
