@@ -2,10 +2,9 @@
 // (the site-wide FAQ hub lives in content.mjs). Answers reuse facts already stated on the site.
 
 export const SHOP_FAQ = [
-  ['What products can I buy from Veda Apothecary?', 'Four single-ingredient Ayurvedic powders — Moringa (leaf), Ashwagandha (root), Triphala (a three-fruit blend) and Amla (fruit) — plus The Ritual Set, which bundles all four. Each pouch is 8 oz (227 g) and resealable.'],
+  ['What products can I buy from Veda Apothecary?', 'Four single-ingredient Ayurvedic powders — Moringa (leaf), Ashwagandha (root), Triphala (a three-fruit blend) and Amla (fruit). Each pouch is 8 oz (227 g) and resealable.'],
   ['How do I choose between the powders?', 'Use the goal filters above the products: Energy (Moringa), Calm (Ashwagandha), Digestion (Triphala) and Immunity (Amla). Each goal page explains how that botanical is traditionally used.*'],
   ['Is anything added to the powders in the shop?', 'No. Every powder is a single botanical with no additives, fillers or preservatives. Triphala is the only blend, and it contains just its three traditional fruits.'],
-  ['What is The Ritual Set?', 'The Ritual Set is a bundle of all four 8 oz powders — Moringa, Ashwagandha, Triphala and Amla — for a complete daily routine, offered at a lower price than buying them separately.'],
   ['What does shipping cost on shop orders?', 'Standard shipping (3–6 business days) is free on orders over $50 and $5.95 below that. Express shipping (1–3 business days) is $12.95. Orders ship from Katy, Texas within 1–2 business days.']
 ];
 

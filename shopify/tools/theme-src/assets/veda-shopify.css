@@ -1,0 +1,12 @@
+/* Small additions for Shopify-only parts (forms, policies, buttons). The design itself is in site.css. */
+.nl-form{position:relative}
+.btn[disabled],button[disabled]{opacity:.55;cursor:not-allowed}
+.shopify-policy__container{max-width:760px;margin:0 auto;padding:60px 20px 90px}
+.shopify-policy__title h1{font-family:var(--serif);font-weight:500;font-size:clamp(34px,5vw,52px);line-height:1.05;margin:0 0 24px}
+.shopify-policy__body{font-size:17px;line-height:1.7}
+.shopify-policy__body h2,.shopify-policy__body h3{font-family:var(--serif);font-weight:500;margin:32px 0 10px}
+.shopify-policy__body a{text-decoration:underline}
+.pagination{display:flex;gap:10px;justify-content:center;font-weight:500}
+.pagination .current{text-decoration:underline}
+.veda-product-form select{width:100%}
+table th,table td{padding:8px 6px;border-bottom:1px solid rgba(0,0,0,.08)}

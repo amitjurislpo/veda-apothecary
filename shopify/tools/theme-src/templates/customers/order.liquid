@@ -1,0 +1,13 @@
+<div class="page">
+  <div class="phead"><div class="wrap"><nav class="crumbs" aria-label="Breadcrumb"><a href="{{ routes.root_url }}">Home</a> / <span aria-current="page">Order</span></nav><h1 class="h-display">Order {{ order.name }}</h1></div></div>
+  <section style="padding-top:30px"><div class="wrap narrow">
+    <p><a href="{{ routes.account_url }}" style="text-decoration:underline">← Back to account</a> · Placed {{ order.created_at | date: '%b %d, %Y' }}</p>
+    <div class="card" style="margin-top:20px">
+      <table style="width:100%;border-collapse:collapse"><thead><tr><th style="text-align:left">Product</th><th>Qty</th><th style="text-align:right">Total</th></tr></thead><tbody>
+      {%- for li in order.line_items -%}<tr><td>{{ li.title }}{% if li.selling_plan_allocation %}<br><small>{{ li.selling_plan_allocation.selling_plan.name }}</small>{% endif %}</td><td style="text-align:center">{{ li.quantity }}</td><td style="text-align:right">{{ li.final_line_price | money }}</td></tr>{%- endfor -%}
+      </tbody></table>
+      <div class="sum" style="margin-top:16px"><div><span>Subtotal</span><span>{{ order.line_items_subtotal_price | money }}</span></div><div><span>Shipping</span><span>{{ order.shipping_price | money }}</span></div><div><span>Tax</span><span>{{ order.tax_price | money }}</span></div><div><span><b>Total</b></span><span><b>{{ order.total_price | money }}</b></span></div></div>
+    </div>
+    <div class="card" style="margin-top:20px"><h2 class="h-sec" style="font-size:24px">Shipping address</h2>{{ order.shipping_address | format_address }}<p>Status: {{ order.fulfillment_status_label }}</p></div>
+  </div></section>
+</div>

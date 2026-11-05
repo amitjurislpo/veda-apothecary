@@ -125,15 +125,15 @@ export const PRODUCTS = {
     part: 'Three fruits',
     benefit: 'digestion',
     goal: 'Digestion',
-    tags: 'Digestion · Balance · Detox',
+    tags: 'Digestion · Balance',
     price: 14.99,
     sku: 'VA-TRI-8OZ',
     c: '#6B3A1A', tint: '#F1E2D3', viv: '#8A4422',
-    summary: 'Traditionally used to support digestive health, gentle detoxification, and regularity.*',
+    summary: 'Traditionally used to support digestive health and regularity.*',
     long: "A revered three-fruit herbal blend, gently combined to support the body's own rhythm — one of the most trusted formulations in traditional herbal wellness.*",
     pts: [
       'Traditionally used to support digestive health*',
-      'Supports gentle, natural detoxification*',
+      'Traditionally used to support digestive balance and regularity*',
       'A time-tested ritual for everyday regularity*'
     ],
     use: 'Mix 1 teaspoon (3–5 g) with warm water and consume as directed by your healthcare professional.',
@@ -224,57 +224,8 @@ export const PRODUCTS = {
   }
 };
 
-export const SET = {
-  id: 'ritual-set',
-  slug: 'ritual-set',
-  name: 'The Ritual Set',
-  short: 'Ritual Set',
-  ident: 'The Ritual Set — 4 herbal supplements',
-  latin: 'All four botanicals, 4 × 8 oz',
-  benefit: 'bundle',
-  goal: 'Bundle',
-  tags: 'Bundle · Save 13%',
-  price: 54.99,
-  sku: 'VA-SET-4X8OZ',
-  c: '#B31D48', tint: '#F6E3DF', viv: '#B31D48',
-  bundle: true,
-  summary: 'The complete Veda Apothecary collection — Moringa, Ashwagandha, Triphala and Amla — for a full daily ritual of energy, calm, digestion and immunity.*',
-  long: 'Four time-honored botanicals, milled into pure, single-ingredient powders. One set covers the whole day: Moringa in your morning smoothie, Amla in a midday tonic, Ashwagandha in evening moon milk and Triphala with warm water before bed.*',
-  pts: [
-    'Moringa, Ashwagandha, Triphala & Amla — 8 oz each',
-    'Save vs. buying individually',
-    'Makes a thoughtful wellness gift'
-  ],
-  use: 'Use each powder as directed on its pouch — typically 1 teaspoon (3–5 g) in water, juice, milk or a smoothie.',
-  ingredients: 'Four pouches: 100% Moringa leaf powder, 100% Ashwagandha root powder, 100% Triphala three-fruit blend (Amla, Haritaki and Bibhitaki), 100% Amla fruit powder. Nothing else — no additives, fillers or preservatives.',
-  seo: {
-    title: 'The Ritual Set — Ayurvedic Powder Bundle (4 × 8 oz) | Veda Apothecary',
-    desc: 'All four Veda Apothecary single-ingredient Ayurvedic powders in one box: Moringa, Ashwagandha, Triphala and Amla, 8 oz each. Save 13% versus buying separately.',
-    h1: 'The Ritual Set'
-  },
-  about: [
-    'The Ritual Set brings together all four Veda Apothecary botanicals — Moringa, Ashwagandha, Triphala and Amla — in four 8 oz resealable pouches. Each powder is a single ingredient with no additives, fillers or preservatives, so you always know exactly what you are adding to your day.',
-    'The set follows the rhythm of a day: Moringa in the morning, Amla at midday, Ashwagandha in the evening and Triphala before bed. It is also a thoughtful wellness gift for anyone curious about everyday Ayurveda.'
-  ],
-  ways: [
-    ['7 am — Moringa', 'Stir into a green smoothie or fresh juice.'],
-    ['1 pm — Amla', 'Mix into sparkling water with lime and mint.'],
-    ['7 pm — Ashwagandha', 'Whisk into warm golden moon milk.'],
-    ['10 pm — Triphala', 'Stir into a cup of warm water before bed.']
-  ],
-  faq: [
-    ['What is in the Ritual Set?', 'Four 8 oz (227 g) pouches: Moringa Powder, Ashwagandha Powder, Triphala Powder and Amla Powder — one pouch of each.'],
-    ['How much do I save with the set?', 'The Ritual Set is priced 13% below buying the four powders individually.'],
-    ['Can I use all four powders every day?', 'Each pouch lists its own directions. Consult a healthcare professional before use, especially if you are pregnant, nursing or taking medication.'],
-    ['Is the set a good gift?', 'Yes — it is a complete introduction to everyday Ayurveda, with four pure powders and a simple morning-to-night routine.']
-  ],
-  articles: ['what-is-ayurveda', 'india-to-texas', 'read-a-supplement-label']
-};
-
-export const ALL = { ...PRODUCTS, 'ritual-set': SET };
-export const LISTING = [...ORDER.map((k) => PRODUCTS[k]), SET];
-export const SINGLE_SUM = +ORDER.reduce((s, k) => s + PRODUCTS[k].price, 0).toFixed(2);
-SET.compare = SINGLE_SUM;
+export const ALL = { ...PRODUCTS };
+export const LISTING = ORDER.map((k) => PRODUCTS[k]);
 
 export const url = (p) => `/products/${p.slug}/`;
 export const bySlug = (slug) => Object.values(ALL).find((p) => p.slug === slug);

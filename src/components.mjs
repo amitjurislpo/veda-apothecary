@@ -1,20 +1,18 @@
 // Reusable markup blocks (kept class-for-class identical to the approved design).
-import { PRODUCTS, ORDER, SET, url as productUrl } from './data/products.mjs';
+import { PRODUCTS, ORDER, url as productUrl } from './data/products.mjs';
 import { BLOG, blogUrl } from './data/blog.mjs';
 import { esc, money, img, ICON, crumbs, faqDetails } from './lib.mjs';
 
-export const hsTag = (p) => (p.bundle ? 'Set of 4 herbal supplements' : 'Herbal Supplement');
+export const hsTag = () => 'Herbal Supplement';
 export const addBtn = (id, label, cls = 'btn sm', extra = '') => `<button class="${cls}" type="button" data-add="${id}"${extra}>${label}</button>`;
 
 export function productCard(p, { lazy = true } = {}) {
   const was = p.compare ? `<s>${money(p.compare)}</s>` : '';
   const href = productUrl(p);
-  const media = p.bundle
-    ? `<div style="position:relative;width:78%;height:70%">${ORDER.map((k, i) => `<img src="/assets/img/pouch-${k}.webp" alt="" width="620" height="859" loading="lazy" decoding="async" style="position:absolute;width:48%;height:auto;left:${i * 17}%;top:${[14, 4, 8, 18][i]}%;transform:rotate(${[-8, -2, 4, 9][i]}deg);border-radius:4px;box-shadow:0 18px 30px -14px rgba(0,0,0,.5)">`).join('')}</div>`
-    : `${img(`pouch-${p.id}.webp`, `${p.name} 8 oz pouch`, { cls: 'pk', loading: lazy ? 'lazy' : 'eager' })}${img(`bowl-${p.id}.webp`, '', { cls: 'cutp' })}`;
+  const media = `${img(`pouch-${p.id}.webp`, `${p.name} 8 oz pouch`, { cls: 'pk', loading: lazy ? 'lazy' : 'eager' })}${img(`bowl-${p.id}.webp`, '', { cls: 'cutp' })}`;
   return `<article class="pcard rv" style="--c:${p.c};--tint:${p.tint}">
     <a href="${href}" class="media" aria-label="${esc(p.name)}">
-      <span class="tag">${p.bundle ? 'Best value' : p.tags.split(' · ')[0]}</span>
+      <span class="tag">${p.tags.split(' · ')[0]}</span>
       ${media}
     </a>
     <div class="quick"><button class="btn" type="button" data-add="${p.id}">Add to cart<span class="qp"> — ${money(p.price)}</span></button></div>
@@ -22,7 +20,7 @@ export function productCard(p, { lazy = true } = {}) {
       <span class="benefit">${p.tags}</span>
       <h3><a href="${href}">${p.name}</a></h3><span class="hs-tag sm">${hsTag(p)}</span>
       <span class="latin">${p.latin}</span>
-      <div class="row"><span class="price">${money(p.price)}${was}</span><span class="size">${p.bundle ? '4 × 8 oz' : '8 oz · 227 g'}</span></div>
+      <div class="row"><span class="price">${money(p.price)}${was}</span><span class="size">${'8 oz · 227 g'}</span></div>
     </div>
   </article>`;
 }
@@ -75,7 +73,7 @@ export const newsletter = () => `<section class="d-nl">
     </div>
   </section>`;
 
-export { PRODUCTS, ORDER, SET };
+export { PRODUCTS, ORDER };
 
 /* ---------- page FAQ block (items must be specific to the page it sits on) ---------- */
 export const faqSection = (items, { title = 'Frequently asked <span class="it">questions</span>', eyebrow = 'Questions' } = {}) =>

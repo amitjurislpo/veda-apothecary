@@ -1,0 +1,16 @@
+<div class="page">
+  <div class="phead"><div class="wrap"><nav class="crumbs" aria-label="Breadcrumb"><a href="{{ routes.root_url }}">Home</a> / <span aria-current="page">Collections</span></nav><h1 class="h-display">Shop by <span class="it">goal</span></h1></div></div>
+  <section style="padding-top:30px"><div class="wrap"><div class="grid3">
+    {%- for c in collections -%}
+      <article class="pcard rv"><a href="{{ c.url }}" class="media" aria-label="{{ c.title | escape }}">{% if c.featured_image %}{{ c.featured_image | image_url: width: 700 | image_tag: class: 'pk', loading: 'lazy' }}{% endif %}</a>
+        <div class="body"><h3><a href="{{ c.url }}">{{ c.title }}</a></h3><span class="size">{{ c.products_count }} products</span></div></article>
+    {%- endfor -%}
+  </div></div></section>
+</div>
+
+{% schema %}
+{
+  "name": "Collections list",
+  "settings": []
+}
+{% endschema %}

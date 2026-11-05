@@ -1,0 +1,29 @@
+{%- case article.handle -%}
+  {%- when 'ashwagandha-101' -%}{% render 'article-ashwagandha-101' %}
+  {%- when 'golden-moon-milk' -%}{% render 'article-golden-moon-milk' %}
+  {%- when 'green-morning-smoothie' -%}{% render 'article-green-morning-smoothie' %}
+  {%- when 'india-to-texas' -%}{% render 'article-india-to-texas' %}
+  {%- when 'meet-amla' -%}{% render 'article-meet-amla' %}
+  {%- when 'meet-moringa' -%}{% render 'article-meet-moringa' %}
+  {%- when 'read-a-supplement-label' -%}{% render 'article-read-a-supplement-label' %}
+  {%- when 'triphala-explained' -%}{% render 'article-triphala-explained' %}
+  {%- when 'what-is-ayurveda' -%}{% render 'article-what-is-ayurveda' %}
+  {%- else -%}
+<div class="page bl-art">
+  <header class="ba-head"><div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="{{ routes.root_url }}">Home</a> / <a href="{{ blog.url }}">Blog</a> / <span aria-current="page">{{ article.title }}</span></nav>
+    <h1>{{ article.title }}</h1>
+    {%- if article.excerpt != blank %}<p class="dek">{{ article.excerpt | strip_html }}</p>{% endif %}
+    <div class="ba-author"><img src="{{ 'mark.png' | asset_url }}" alt="" width="170" height="145"><span><b>Written by {{ article.author }}</b><time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%b %d, %Y' }}</time></span></div>
+    {%- if article.image %}<div class="ba-hero"><div class="bc-img">{{ article.image | image_url: width: 1400 | image_tag: loading: 'eager', style: 'object-fit:cover' }}</div></div>{% endif %}
+  </div></header>
+  <div class="wrap narrow prose" style="padding-bottom:80px">{{ article.content }}</div>
+</div>
+{%- endcase -%}
+
+{% schema %}
+{
+  "name": "Blog post",
+  "settings": []
+}
+{% endschema %}

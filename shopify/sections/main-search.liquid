@@ -1,0 +1,26 @@
+<div class="page">
+  <div class="phead"><div class="wrap"><nav class="crumbs" aria-label="Breadcrumb"><a href="{{ routes.root_url }}">Home</a> / <span aria-current="page">Search</span></nav><h1 class="h-display">Search</h1>
+    <form action="{{ routes.search_url }}" method="get" role="search" style="max-width:520px;margin-top:18px"><div class="field"><input id="sq-page" type="search" name="q" value="{{ search.terms | escape }}" placeholder=" "><label for="sq-page">Search products and articles</label></div></form>
+  </div></div>
+  <section style="padding-top:30px"><div class="wrap">
+    {%- if search.performed -%}
+      <p class="size">{{ search.results_count }} result{% if search.results_count != 1 %}s{% endif %} for “{{ search.terms | escape }}”</p>
+      {%- paginate search.results by 24 -%}
+      <div class="grid3" style="margin-top:20px">
+        {%- for item in search.results -%}
+          {%- if item.object_type == 'product' -%}{% render 'product-card', p: item %}
+          {%- else -%}<article class="pcard rv"><div class="body"><h3><a href="{{ item.url }}">{{ item.title }}</a></h3><p class="size">{{ item.content | strip_html | truncate: 120 }}</p></div></article>{%- endif -%}
+        {%- endfor -%}
+      </div>
+      {%- if paginate.pages > 1 %}<div style="margin-top:30px">{{ paginate | default_pagination }}</div>{% endif -%}
+      {%- endpaginate -%}
+    {%- endif -%}
+  </div></section>
+</div>
+
+{% schema %}
+{
+  "name": "Search results",
+  "settings": []
+}
+{% endschema %}

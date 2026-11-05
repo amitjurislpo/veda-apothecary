@@ -24,6 +24,14 @@ export const SITE = {
   // Cart hand-off. Leave empty to send cart contents to the order e-mail address instead.
   // Set to a Shopify / Stripe Payment Link / hosted-checkout URL when the store back end is chosen.
   checkoutUrl: '',
+  // Optional: send the Vercel site's checkout to the Shopify store (cart permalink: /cart/<variantId>:<qty>,…).
+  // Off by default. Turn on with VEDA_CHECKOUT=shopify at build time, or set checkout: true here.
+  // 'variants' maps product id -> Shopify variant id (Admin > Products > the product > variant URL).
+  shopify: {
+    storeDomain: process.env.VEDA_SHOPIFY_STORE || 'iqvsus-db.myshopify.com',
+    checkout: process.env.VEDA_CHECKOUT === 'shopify',
+    variants: { moringa: '', ashwagandha: '', triphala: '', amla: '' }
+  },
   orderEmail: 'hello@vedaapothecaryusa.com',
   // Newsletter / contact / wholesale forms post here when set (e.g. a Formspree or Basin endpoint).
   formEndpoint: '',

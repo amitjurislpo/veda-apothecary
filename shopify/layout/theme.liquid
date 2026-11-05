@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code | default: 'en' }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>
+  {{- page_title -}}
+  {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
+  {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
+  {%- unless page_title contains shop.name %} | {{ shop.name }}{% endunless -%}
+</title>
+{%- if page_description %}<meta name="description" content="{{ page_description | escape }}">{% endif %}
+<link rel="canonical" href="{{ canonical_url }}">
+<meta name="theme-color" content="#0B4F45">
+<meta name="format-detection" content="telephone=no">
+{% render 'meta-tags' %}
+<link rel="icon" type="image/png" sizes="32x32" href="{{ 'favicon-32.png' | asset_url }}">
+<link rel="apple-touch-icon" href="{{ 'apple-touch-icon.png' | asset_url }}">
+<link rel="preload" href="{{ 'bricolage-grotesque-latin.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ 'dm-sans-latin.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin>
+<script>document.documentElement.className+=' js'</script>
+{{ 'site.css' | asset_url | stylesheet_tag }}
+{{ 'veda-shopify.css' | asset_url | stylesheet_tag }}
+{{ content_for_header }}
+</head>
+<body class="template-{{ template.name }}{% if template.suffix %} template-{{ template.name }}-{{ template.suffix }}{% endif %}">
+<a class="skip-link" href="#main">Skip to content</a>
+{% section 'header' %}
+<main id="main">
+{{ content_for_layout }}
+</main>
+{% section 'footer' %}
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" role="dialog" aria-label="Shopping cart" aria-modal="true"></aside>
+<div class="toast" id="toast" role="status"></div>
+<div class="sticky-atc" id="satc" inert></div>
+{% render 'veda-data' %}
+<script src="{{ 'veda-site.js' | asset_url }}" defer></script>
+{%- case template.name -%}
+  {%- when 'index' -%}<script src="{{ 'home.js' | asset_url }}" defer></script>
+  {%- when 'product' -%}<script src="{{ 'product.js' | asset_url }}" defer></script>
+  {%- when 'cart' -%}<script src="{{ 'cart-page.js' | asset_url }}" defer></script>
+  {%- when 'article' -%}<script src="{{ 'article.js' | asset_url }}" defer></script>
+{%- endcase %}
+</body>
+</html>

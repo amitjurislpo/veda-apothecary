@@ -1,0 +1,40 @@
+{%- assign done = false -%}
+{%- if blog.handle == 'journal' -%}
+  {%- if current_tags == blank -%}
+    {% render 'blog-journal' %}{% assign done = true %}
+  {%- else -%}
+    {%- assign tag_handle = current_tags.first | handleize -%}
+    {%- case tag_handle -%}
+    {%- when 'ayurveda-basics' -%}{% render 'blog-tag-ayurveda-basics' %}{% assign done = true %}
+    {%- when 'botanicals' -%}{% render 'blog-tag-botanicals' %}{% assign done = true %}
+    {%- when 'rituals-and-recipes' -%}{% render 'blog-tag-rituals-and-recipes' %}{% assign done = true %}
+    {%- when 'sourcing-and-quality' -%}{% render 'blog-tag-sourcing-and-quality' %}{% assign done = true %}
+    {%- endcase -%}
+  {%- endif -%}
+{%- endif -%}
+{%- unless done -%}
+<div class="page bl-page"><section class="bl-hero"><div class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="{{ routes.root_url }}">Home</a> / <span aria-current="page">{{ blog.title }}</span></nav>
+  <h1>{{ blog.title }}{% if current_tags %}: {{ current_tags | join: ', ' }}{% endif %}</h1>
+  {%- paginate blog.articles by 12 -%}
+  <div class="bgrid">
+    {%- for a in blog.articles -%}
+      <a class="bcard rv" href="{{ a.url }}">
+        <div class="bc-img">{% if a.image %}{{ a.image | image_url: width: 800 | image_tag: loading: 'lazy', style: 'object-fit:cover' }}{% endif %}</div>
+        <div class="bc-body"><h3>{{ a.title }}</h3><p>{{ a.excerpt_or_content | strip_html | truncate: 140 }}</p><time datetime="{{ a.published_at | date: '%Y-%m-%d' }}">{{ a.published_at | date: '%b %d, %Y' | upcase }}</time></div>
+      </a>
+    {%- else -%}
+      <p class="bl-lead">No posts yet.</p>
+    {%- endfor -%}
+  </div>
+  {%- if paginate.pages > 1 %}<div style="margin-top:30px">{{ paginate | default_pagination }}</div>{% endif -%}
+  {%- endpaginate -%}
+</div></section></div>
+{%- endunless -%}
+
+{% schema %}
+{
+  "name": "Blog",
+  "settings": []
+}
+{% endschema %}

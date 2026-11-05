@@ -1,5 +1,5 @@
 import { SITE, DISCLAIMER, IMG_NOTE } from '../site.mjs';
-import { PRODUCTS, ORDER, SET, SINGLE_SUM, url as productUrl } from '../data/products.mjs';
+import { PRODUCTS, ORDER, url as productUrl } from '../data/products.mjs';
 import { COLLECTIONS, HOME_FAQ } from '../data/content.mjs';
 import { esc, money, img, ICON, faqDetails, faqSchema, abs, plain } from '../lib.mjs';
 import { blogSection, newsletter, hsTag } from '../components.mjs';
@@ -127,21 +127,6 @@ export function homePage() {
     <img class="d-follow" id="dfollow" src="/assets/img/bowl-moringa.webp" alt="" width="820" height="367">
   </section>
 
-  <section class="d-tk">
-    <div class="wrap">
-      <div class="ticket rv">
-        <div class="l">
-          <span class="eyebrow" style="color:#FFD9E3">The Ritual Set · bundle</span>
-          <h2>All four. One box. Better price.</h2>
-          <p>Moringa, Ashwagandha, Triphala &amp; Amla — 8 oz each. A complete morning-to-night ritual, or the perfect wellness gift.</p>
-          <div class="pr"><span class="price">${money(SET.price)}</span><s style="opacity:.7;font-size:20px">${money(SINGLE_SUM)}</s></div>
-          <div class="hero-ctas"><button class="btn yellow" type="button" data-add="ritual-set">Add the set to cart</button><a class="btn" style="background:transparent;border-color:#fff" href="${productUrl(SET)}">What's inside</a></div>
-        </div>
-        <div class="r">${['amla', 'moringa', 'triphala', 'ashwagandha'].map((k) => img(`pouch-${k}.webp`, `${P[k].name} pouch`)).join('')}
-          <div class="sticker"><svg viewBox="0 0 126 126" aria-hidden="true"><defs><path id="stp2" d="M63 63m-48 0a48 48 0 1 1 96 0a48 48 0 1 1-96 0"/></defs><text font-size="10" font-weight="700" letter-spacing="2.6" fill="#16201D" font-family="DM Sans"><textPath href="#stp2">BEST VALUE · BEST VALUE · BEST ·</textPath></text></svg>−13%</div></div>
-      </div>
-    </div>
-  </section>
 
   ${WAVE('#FFFFFF', '#FFE3D3')}
   <section class="d-cert" style="padding-top:70px">
@@ -174,7 +159,7 @@ export function homePage() {
   const itemList = {
     '@type': 'ItemList',
     name: 'Veda Apothecary Ayurvedic powders',
-    itemListElement: [...ORDER.map((k) => P[k]), SET].map((p, i) => ({ '@type': 'ListItem', position: i + 1, url: abs(productUrl(p)), name: p.name }))
+    itemListElement: ORDER.map((k) => P[k]).map((p, i) => ({ '@type': 'ListItem', position: i + 1, url: abs(productUrl(p)), name: p.name }))
   };
 
   return {
