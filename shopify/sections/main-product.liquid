@@ -1,0 +1,15 @@
+{%- comment -%}Veda design pages for the 4 launch products; any new product falls back to pdp-generic.{%- endcomment -%}
+{%- case product.handle -%}
+  {%- when 'moringa-powder' -%}{% render 'pdp-moringa-powder' %}
+  {%- when 'ashwagandha-powder' -%}{% render 'pdp-ashwagandha-powder' %}
+  {%- when 'triphala-powder' -%}{% render 'pdp-triphala-powder' %}
+  {%- when 'amla-powder' -%}{% render 'pdp-amla-powder' %}
+  {%- else -%}{% render 'pdp-generic', product: product %}
+{%- endcase -%}
+
+{% schema %}
+{
+  "name": "Product page",
+  "settings": []
+}
+{% endschema %}

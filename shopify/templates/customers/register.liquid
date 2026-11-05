@@ -1,0 +1,12 @@
+<div class="page">
+  <div class="phead"><div class="wrap"><nav class="crumbs" aria-label="Breadcrumb"><a href="{{ routes.root_url }}">Home</a> / <span aria-current="page">Create account</span></nav><h1 class="h-display">Create an <span class="it">account</span></h1></div></div>
+  <section style="padding-top:30px"><div class="wrap narrow">
+    <div class="card">
+      {%- form 'create_customer' -%}
+        {%- if form.errors %}<p class="form-note">{{ form.errors | default_errors }}</p>{% endif -%}
+        <div class="fgrid2"><div class="field full"><input id="rf" type="text" name="customer[first_name]" placeholder=" " autocomplete="given-name" required><label for="rf">First name</label></div><div class="field full"><input id="rl" type="text" name="customer[last_name]" placeholder=" " autocomplete="family-name" required><label for="rl">Last name</label></div><div class="field full"><input id="rem" type="email" name="customer[email]" placeholder=" " autocomplete="email" required><label for="rem">Email</label></div><div class="field full"><input id="rpw" type="password" name="customer[password]" placeholder=" " autocomplete="new-password" required><label for="rpw">Password</label></div></div>
+        <button class="btn block" type="submit" style="margin-top:16px">Create account</button>
+      {%- endform -%}
+    </div>
+  </div></section>
+</div>

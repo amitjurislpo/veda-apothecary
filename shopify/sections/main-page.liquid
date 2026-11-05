@@ -1,0 +1,19 @@
+{%- case page.handle -%}
+  {%- when 'about' -%}{% render 'page-about' %}
+  {%- when 'faq' -%}{% render 'page-faq' %}
+  {%- when 'contact' -%}{% render 'page-contact' %}
+  {%- when 'wholesale' -%}{% render 'page-wholesale' %}
+  {%- when 'accessibility' -%}{% render 'page-accessibility' %}
+  {%- else -%}
+<div class="page">
+  <div class="phead"><div class="wrap"><nav class="crumbs" aria-label="Breadcrumb"><a href="{{ routes.root_url }}">Home</a> / <span aria-current="page">{{ page.title }}</span></nav><h1 class="h-display">{{ page.title }}</h1></div></div>
+  <section style="padding-top:30px"><div class="wrap narrow prose">{{ page.content }}</div></section>
+</div>
+{%- endcase -%}
+
+{% schema %}
+{
+  "name": "Page",
+  "settings": []
+}
+{% endschema %}
