@@ -7,3 +7,4 @@ dist-shopify/
 dist-shopify-theme/
 dist-shopify-aux/
 dist-shopify-admin/
+shopify/*.zip
