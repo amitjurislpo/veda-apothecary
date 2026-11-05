@@ -6,7 +6,7 @@ import sharp from 'sharp';
 import { transform } from 'esbuild';
 import { SITE } from './src/site.mjs';
 import { ROOT, abs, plain } from './src/lib.mjs';
-import { PRODUCTS, ORDER, SET, LISTING, SINGLE_SUM, url as productUrl } from './src/data/products.mjs';
+import { PRODUCTS, ORDER, LISTING, url as productUrl } from './src/data/products.mjs';
 import { BLOG, BCATS, blogUrl, catUrl } from './src/data/blog.mjs';
 import { COLLECTIONS } from './src/data/content.mjs';
 import { layout, ASSET_V } from './src/layout.mjs';
@@ -59,7 +59,6 @@ fs.mkdirSync(path.join(DIST, 'assets/img'), { recursive: true });
 copyDir(path.join(ROOT, 'assets/img'), path.join(DIST, 'assets/img'), (n) => n === 'manifest.json');
 await ogCard('og-default.jpg', '#FFF8EE', ORDER);
 for (const k of ORDER) await ogCard(`og-${k}.jpg`, PRODUCTS[k].tint, [k]);
-await ogCard('og-ritual-set.jpg', '#F6E3DF', ORDER);
 
 {
   const mark = sharp(imgP('mark.png'));
@@ -78,9 +77,9 @@ await ogCard('og-ritual-set.jpg', '#F6E3DF', ORDER);
 const catalog = {
   config: { checkoutUrl: SITE.checkoutUrl, orderEmail: SITE.orderEmail, formEndpoint: SITE.formEndpoint, wholesaleEmail: SITE.company.wholesaleEmail, freeShip: SITE.freeShippingOver, subOff: SITE.subscribeDiscount, ga4: SITE.ga4 },
   order: ORDER,
-  products: Object.fromEntries([...ORDER.map((k) => PRODUCTS[k]), SET].map((p) => [p.id, { id: p.id, name: p.name, short: p.short, price: p.price, compare: p.compare || 0, url: productUrl(p), img: p.bundle ? '/assets/img/pouch-moringa.webp' : `/assets/img/pouch-${p.id}.webp`, bowl: `/assets/img/bowl-${p.id === 'ritual-set' ? 'triphala' : p.id}.webp`, base: `/assets/img/bowl-base-${p.id === 'ritual-set' ? 'triphala' : p.id}.webp`, pack: `/assets/img/pouch-${p.id === 'ritual-set' ? 'moringa' : p.id}.webp`, tags: p.tags, latin: p.latin, goal: p.goal, short_txt: p.summary, use: p.use, part: p.part || '', servings: p.servings || '', bundle: !!p.bundle, viv: p.viv, benefit: p.benefit }])),
+  products: Object.fromEntries(LISTING.map((p) => [p.id, { id: p.id, name: p.name, short: p.short, price: p.price, compare: p.compare || 0, url: productUrl(p), img: `/assets/img/pouch-${p.id}.webp`, bowl: `/assets/img/bowl-${p.id}.webp`, base: `/assets/img/bowl-base-${p.id}.webp`, pack: `/assets/img/pouch-${p.id}.webp`, tags: p.tags, latin: p.latin, goal: p.goal, short_txt: p.summary, use: p.use, part: p.part || '', servings: p.servings || '', viv: p.viv, benefit: p.benefit }])),
   search: [
-    ...[...ORDER.map((k) => PRODUCTS[k]), SET].map((p) => ({ t: p.name, u: productUrl(p), k: [p.name, p.tags, p.latin, p.benefit, p.summary].join(' ').toLowerCase(), img: p.bundle ? '/assets/img/pouch-moringa.webp' : `/assets/img/pouch-${p.id}.webp`, s: money(p.price) })),
+    ...LISTING.map((p) => ({ t: p.name, u: productUrl(p), k: [p.name, p.tags, p.latin, p.benefit, p.summary].join(' ').toLowerCase(), img: `/assets/img/pouch-${p.id}.webp`, s: money(p.price) })),
     ...COLLECTIONS.map((c) => ({ t: `${c.goal} — Ayurvedic powders`, u: `/collections/${c.slug}/`, k: `${c.goal} ${PRODUCTS[c.product].name}`.toLowerCase(), s: 'Shop by goal' })),
     ...BLOG.map((b) => ({ t: plain(b.title), u: blogUrl(b), k: (plain(b.title) + ' ' + plain(b.dek) + ' ' + b.cat).toLowerCase(), s: 'Blog · ' + b.cat }))
   ]

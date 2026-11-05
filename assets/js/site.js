@@ -91,17 +91,17 @@
     return cart.map(function (l) {
       var p = V.products[l.id];
       return '<div class="line"><a href="' + p.url + '"><img src="' + p.img + '" alt="' + esc(p.name) + '" width="80" height="110" style="--tint:#F2E8D8"></a>' +
-        '<div><h5>' + esc(p.name) + '</h5><small>' + (p.bundle ? '4 × 8 oz' : '8 oz · 227 g') + (l.sub ? ' · <span style="color:var(--teal)">Every ' + l.freq + ' days, −10%</span>' : '') + '</small>' +
+        '<div><h5>' + esc(p.name) + '</h5><small>' + '8 oz · 227 g' + (l.sub ? ' · <span style="color:var(--teal)">Every ' + l.freq + ' days, −10%</span>' : '') + '</small>' +
         '<div class="qty sm"><button type="button" aria-label="Decrease quantity" data-cq="' + l.key + '" data-d="-1">−</button><span>' + l.qty + '</span><button type="button" aria-label="Increase quantity" data-cq="' + l.key + '" data-d="1">+</button></div>' +
         '<button class="rm" type="button" data-crm="' + l.key + '">Remove</button></div><div class="lp">' + money(unit(l) * l.qty) + '</div></div>';
     }).join('');
   }
   var emptyHTML = '<div class="empty"><img src="/assets/img/mark.png" alt="" width="170" height="145"><h3 class="h-display" style="font-size:30px">Your cart is empty</h3><p class="lead" style="margin:10px auto 26px">Begin your ritual with one of our four botanicals.</p><a class="btn" href="/shop/">Shop the collection</a></div>';
   function renderDrawer() {
-    var has = cart.length, hasSet = cart.some(function (l) { return l.id === 'ritual-set'; }), set = V.products['ritual-set'];
+    var has = cart.length;
     drawer.innerHTML = '<div class="dhead"><h3>Your cart <span style="font-family:var(--sans);font-size:15px;color:var(--muted)">(' + count() + ')</span></h3><button class="icon-btn" type="button" aria-label="Close cart" data-cart="close"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>' +
       (has ? shipBar() : '') +
-      '<div class="dbody">' + (has ? lines() + (hasSet || !set ? '' : '<div class="upsell"><img src="/assets/img/pouch-triphala.webp" alt="" width="40" height="56"><div><b style="font-weight:500">Make it the full ritual</b><br><small style="color:var(--muted)">All 4 botanicals for ' + money(set.price) + '</small></div><button class="btn sm" type="button" data-add="ritual-set">Add</button></div>') : emptyHTML) + '</div>' +
+      '<div class="dbody">' + (has ? lines() : emptyHTML) + '</div>' +
       (has ? '<div class="dfoot"><div class="tot"><span>Subtotal</span><b>' + money(subtotal()) + '</b></div><small>Taxes and shipping calculated at checkout</small><a class="btn block" href="/cart/">Review &amp; checkout</a></div>' : '');
   }
 

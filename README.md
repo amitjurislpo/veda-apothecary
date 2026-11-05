@@ -24,9 +24,9 @@ headers for Netlify and Cloudflare Pages.
 
 | URL | What |
 |---|---|
-| `/` | Home (hero panels, pour scene, quiz, day arc, bundle, certs, blog, FAQ) |
+| `/` | Home (hero panels, pour scene, quiz, day arc, certs, blog, FAQ) |
 | `/shop/` | All products |
-| `/products/moringa-powder/` `…/ashwagandha-powder/` `…/triphala-powder/` `…/amla-powder/` `…/ritual-set/` | Product pages — Product, Offer, FAQPage, BreadcrumbList schema |
+| `/products/moringa-powder/` `…/ashwagandha-powder/` `…/triphala-powder/` `…/amla-powder/` | Product pages — Product, Offer, FAQPage, BreadcrumbList schema |
 | `/collections/energy/` `…/calm/` `…/digestion/` `…/immunity/` | Shop-by-goal landing pages |
 | `/blog/`, `/blog/category/<slug>/`, `/blog/<slug>/` | Blog hub, 4 category hubs, 9 articles (BlogPosting + FAQPage) |
 | `/about/` `/faq/` `/contact/` `/wholesale/` | Brand + support pages |

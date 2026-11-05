@@ -1,5 +1,5 @@
 import { SITE, DISCLAIMER } from './site.mjs';
-import { PRODUCTS, SET, ORDER, url as productUrl } from './data/products.mjs';
+import { PRODUCTS, ORDER, url as productUrl } from './data/products.mjs';
 import { COLLECTIONS } from './data/content.mjs';
 import { esc, json, abs, img, plain, ICON } from './lib.mjs';
 
@@ -14,7 +14,6 @@ const ANN = [
 
 const NAV = [
   ['shop', '/shop/', 'Shop'],
-  ['bundle', '/products/ritual-set/', 'Ritual Set'],
   ['blog', '/blog/', 'Blog'],
   ['about', '/about/', 'Our Story'],
   ['wholesale', '/wholesale/', 'Wholesale']
@@ -108,7 +107,6 @@ function header(active) {
   </div>
   <a href="/">Home</a>
   <a href="/shop/">Shop All</a>
-  <a href="/products/ritual-set/">The Ritual Set</a>
   <a href="/blog/">Blog</a>
   <a href="/about/">Our Story</a>
   <a href="/wholesale/">Wholesale</a>
@@ -140,7 +138,6 @@ function footer() {
         <p class="fh">Shop</p>
         <ul>
           ${ORDER.map((k) => `<li><a href="${productUrl(PRODUCTS[k])}">${PRODUCTS[k].name}</a></li>`).join('\n          ')}
-          <li><a href="${productUrl(SET)}">The Ritual Set</a></li>
         </ul>
       </div>
       <div>
