@@ -75,7 +75,7 @@ for (const k of ORDER) await ogCard(`og-${k}.jpg`, PRODUCTS[k].tint, [k]);
 
 /* ---------- 2. client data (catalog.js, search index) ---------- */
 const catalog = {
-  config: { checkoutUrl: SITE.checkoutUrl, orderEmail: SITE.orderEmail, formEndpoint: SITE.formEndpoint, wholesaleEmail: SITE.company.wholesaleEmail, freeShip: SITE.freeShippingOver, subOff: SITE.subscribeDiscount, ga4: SITE.ga4 },
+  config: { shopify: SITE.shopify.checkout ? { store: SITE.shopify.storeDomain, variants: SITE.shopify.variants } : null, checkoutUrl: SITE.checkoutUrl, orderEmail: SITE.orderEmail, formEndpoint: SITE.formEndpoint, wholesaleEmail: SITE.company.wholesaleEmail, freeShip: SITE.freeShippingOver, subOff: SITE.subscribeDiscount, ga4: SITE.ga4 },
   order: ORDER,
   products: Object.fromEntries(LISTING.map((p) => [p.id, { id: p.id, name: p.name, short: p.short, price: p.price, compare: p.compare || 0, url: productUrl(p), img: `/assets/img/pouch-${p.id}.webp`, bowl: `/assets/img/bowl-${p.id}.webp`, base: `/assets/img/bowl-base-${p.id}.webp`, pack: `/assets/img/pouch-${p.id}.webp`, tags: p.tags, latin: p.latin, goal: p.goal, short_txt: p.summary, use: p.use, part: p.part || '', servings: p.servings || '', viv: p.viv, benefit: p.benefit }])),
   search: [

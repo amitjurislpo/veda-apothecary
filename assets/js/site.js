@@ -114,6 +114,11 @@
   }
   function checkout() {
     if (!cart.length) return;
+    if (CFG.shopify) {
+      var parts = cart.map(function (l) { var v = CFG.shopify.variants[l.id]; return v ? v + ':' + l.qty : ''; });
+      window.location.href = 'https://' + CFG.shopify.store + (parts.every(Boolean) ? '/cart/' + parts.join(',') : '/collections/all');
+      return;
+    }
     if (CFG.checkoutUrl) { window.location.href = CFG.checkoutUrl; return; }
     window.location.href = 'mailto:' + CFG.orderEmail + '?subject=' + encodeURIComponent('Order request') + '&body=' + encodeURIComponent(orderText());
   }
