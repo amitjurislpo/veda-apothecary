@@ -1,0 +1,13 @@
+{%- comment -%} Simple product card in the Veda style. Pass p: product {%- endcomment -%}
+<article class="pcard rv">
+  <a href="{{ p.url }}" class="media" aria-label="{{ p.title | escape }}">
+    {%- if p.featured_image -%}
+      {{ p.featured_image | image_url: width: 700 | image_tag: class: 'pk', loading: 'lazy', alt: p.title }}
+    {%- endif -%}
+  </a>
+  <div class="body">
+    <h3><a href="{{ p.url }}">{{ p.title }}</a></h3>
+    {%- if p.type != blank %}<span class="hs-tag sm">{{ p.type }}</span>{% endif %}
+    <div class="row"><span class="price">{{ p.price | money }}</span></div>
+  </div>
+</article>

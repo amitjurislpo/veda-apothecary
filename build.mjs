@@ -6,16 +6,19 @@ import sharp from 'sharp';
 import { transform } from 'esbuild';
 import { SITE } from './src/site.mjs';
 import { ROOT, abs, plain } from './src/lib.mjs';
-import { PRODUCTS, ORDER, SET, LISTING, SINGLE_SUM, url as productUrl } from './src/data/products.mjs';
+import { PRODUCTS, ORDER, LISTING, url as productUrl } from './src/data/products.mjs';
 import { BLOG, BCATS, blogUrl, catUrl } from './src/data/blog.mjs';
 import { COLLECTIONS } from './src/data/content.mjs';
 import { layout, ASSET_V } from './src/layout.mjs';
+import { shopifyPath, rewriteUrls } from './src/shopify-urls.mjs';
 import { homePage } from './src/pages/home.mjs';
 import { shopPage, collectionPage, productPage } from './src/pages/shop.mjs';
 import { blogIndex, blogCategory, blogPost } from './src/pages/blog.mjs';
 import { aboutPage, contactPage, wholesalePage, faqPage, shippingReturnsPage, privacyPage, termsPage, accessibilityPage, cartPage, notFoundPage } from './src/pages/info.mjs';
 
-const DIST = path.join(ROOT, 'dist');
+// VEDA_TARGET=shopify builds the same site with Shopify URLs into ./dist-shopify (input for npm run build:shopify).
+const SHOPIFY = process.env.VEDA_TARGET === 'shopify';
+const DIST = path.join(ROOT, SHOPIFY ? 'dist-shopify' : 'dist');
 const write = (rel, data) => { const f = path.join(DIST, rel); fs.mkdirSync(path.dirname(f), { recursive: true }); fs.writeFileSync(f, data); };
 const copyDir = (from, to, skip = () => false) => {
   fs.mkdirSync(to, { recursive: true });
@@ -59,7 +62,6 @@ fs.mkdirSync(path.join(DIST, 'assets/img'), { recursive: true });
 copyDir(path.join(ROOT, 'assets/img'), path.join(DIST, 'assets/img'), (n) => n === 'manifest.json');
 await ogCard('og-default.jpg', '#FFF8EE', ORDER);
 for (const k of ORDER) await ogCard(`og-${k}.jpg`, PRODUCTS[k].tint, [k]);
-await ogCard('og-ritual-set.jpg', '#F6E3DF', ORDER);
 
 {
   const mark = sharp(imgP('mark.png'));
@@ -76,11 +78,11 @@ await ogCard('og-ritual-set.jpg', '#F6E3DF', ORDER);
 
 /* ---------- 2. client data (catalog.js, search index) ---------- */
 const catalog = {
-  config: { checkoutUrl: SITE.checkoutUrl, orderEmail: SITE.orderEmail, formEndpoint: SITE.formEndpoint, wholesaleEmail: SITE.company.wholesaleEmail, freeShip: SITE.freeShippingOver, subOff: SITE.subscribeDiscount, ga4: SITE.ga4 },
+  config: { shopify: SITE.shopify.checkout ? { store: SITE.shopify.storeDomain, variants: SITE.shopify.variants } : null, checkoutUrl: SITE.checkoutUrl, orderEmail: SITE.orderEmail, formEndpoint: SITE.formEndpoint, wholesaleEmail: SITE.company.wholesaleEmail, freeShip: SITE.freeShippingOver, subOff: SITE.subscribeDiscount, ga4: SITE.ga4 },
   order: ORDER,
-  products: Object.fromEntries([...ORDER.map((k) => PRODUCTS[k]), SET].map((p) => [p.id, { id: p.id, name: p.name, short: p.short, price: p.price, compare: p.compare || 0, url: productUrl(p), img: p.bundle ? '/assets/img/pouch-moringa.webp' : `/assets/img/pouch-${p.id}.webp`, bowl: `/assets/img/bowl-${p.id === 'ritual-set' ? 'triphala' : p.id}.webp`, base: `/assets/img/bowl-base-${p.id === 'ritual-set' ? 'triphala' : p.id}.webp`, pack: `/assets/img/pouch-${p.id === 'ritual-set' ? 'moringa' : p.id}.webp`, tags: p.tags, latin: p.latin, goal: p.goal, short_txt: p.summary, use: p.use, part: p.part || '', servings: p.servings || '', bundle: !!p.bundle, viv: p.viv, benefit: p.benefit }])),
+  products: Object.fromEntries(LISTING.map((p) => [p.id, { id: p.id, name: p.name, short: p.short, price: p.price, compare: p.compare || 0, url: productUrl(p), img: `/assets/img/pouch-${p.id}.webp`, bowl: `/assets/img/bowl-${p.id}.webp`, base: `/assets/img/bowl-base-${p.id}.webp`, pack: `/assets/img/pouch-${p.id}.webp`, tags: p.tags, latin: p.latin, goal: p.goal, short_txt: p.summary, use: p.use, part: p.part || '', servings: p.servings || '', viv: p.viv, benefit: p.benefit }])),
   search: [
-    ...[...ORDER.map((k) => PRODUCTS[k]), SET].map((p) => ({ t: p.name, u: productUrl(p), k: [p.name, p.tags, p.latin, p.benefit, p.summary].join(' ').toLowerCase(), img: p.bundle ? '/assets/img/pouch-moringa.webp' : `/assets/img/pouch-${p.id}.webp`, s: money(p.price) })),
+    ...LISTING.map((p) => ({ t: p.name, u: productUrl(p), k: [p.name, p.tags, p.latin, p.benefit, p.summary].join(' ').toLowerCase(), img: `/assets/img/pouch-${p.id}.webp`, s: money(p.price) })),
     ...COLLECTIONS.map((c) => ({ t: `${c.goal} — Ayurvedic powders`, u: `/collections/${c.slug}/`, k: `${c.goal} ${PRODUCTS[c.product].name}`.toLowerCase(), s: 'Shop by goal' })),
     ...BLOG.map((b) => ({ t: plain(b.title), u: blogUrl(b), k: (plain(b.title) + ' ' + plain(b.dek) + ' ' + b.cat).toLowerCase(), s: 'Blog · ' + b.cat }))
   ]
@@ -95,7 +97,7 @@ const cssSrc = ['fonts.css', 'site.css', 'extra.css'].map((f) => fs.readFileSync
 write('assets/css/site.css', (await transform(cssSrc, { loader: 'css', minify: true })).code);
 for (const f of fs.readdirSync(path.join(ROOT, 'assets/js'))) write('assets/js/' + f, (await transform(fs.readFileSync(path.join(ROOT, 'assets/js', f), 'utf8'), { loader: 'js', minify: true, target: 'es2019' })).code);
 copyDir(path.join(ROOT, 'assets/fonts'), path.join(DIST, 'assets/fonts'));
-write('assets/js/catalog.js', `/* generated by build.mjs */\nwindow.VEDA=${JSON.stringify(catalog)};\n`);
+write('assets/js/catalog.js', `/* generated by build.mjs */\nwindow.VEDA=${SHOPIFY ? rewriteUrls(JSON.stringify(catalog)) : JSON.stringify(catalog)};\n`);
 ASSET_V.css = hashDir(path.join(DIST, 'assets/css'));
 ASSET_V.js = hashDir(path.join(DIST, 'assets/js'));
 
@@ -108,8 +110,14 @@ const pages = [
 const seen = new Set();
 for (const p of pages) {
   if (seen.has(p.path)) throw new Error('duplicate path ' + p.path); seen.add(p.path);
+  const html = layout(p);
+  if (SHOPIFY) {
+    const sp = shopifyPath(p.path);
+    write(p.file || (sp === '/' ? 'index.html' : sp.slice(1) + 'index.html'), rewriteUrls(html));
+    continue;
+  }
   const file = p.file || (p.path === '/' ? 'index.html' : p.path.replace(/^\//, '') + 'index.html');
-  write(file, layout(p));
+  write(file, html);
 }
 
 /* ---------- 5. sitemap, robots, llms.txt, manifest, headers ---------- */
@@ -142,4 +150,4 @@ ${BLOG.map((b) => `- [${plain(b.title)}](${abs(blogUrl(b))}): ${plain(b.dek)}`).
 `);
 write('_headers', `/assets/*\n  Cache-Control: public, max-age=31536000, immutable\n/*.html\n  Cache-Control: public, max-age=0, must-revalidate\n/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n`);
 
-console.log(`Built ${pages.length} pages → dist/  (css v${ASSET_V.css}, js v${ASSET_V.js})`);
+console.log(`Built ${pages.length} pages → ${path.basename(DIST)}/  (css v${ASSET_V.css}, js v${ASSET_V.js})`);

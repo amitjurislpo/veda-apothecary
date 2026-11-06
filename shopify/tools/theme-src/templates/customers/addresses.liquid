@@ -1,0 +1,17 @@
+<div class="page">
+  <div class="phead"><div class="wrap"><nav class="crumbs" aria-label="Breadcrumb"><a href="{{ routes.root_url }}">Home</a> / <span aria-current="page">Addresses</span></nav><h1 class="h-display">Your <span class="it">addresses</span></h1></div></div>
+  <section style="padding-top:30px"><div class="wrap narrow">
+    <p><a href="{{ routes.account_url }}" style="text-decoration:underline">← Back to account</a></p>
+    {%- for address in customer.addresses -%}
+      <div class="card" style="margin-top:16px">{{ address | format_address }}{% if address == customer.default_address %}<p><b>Default</b></p>{% endif %}
+        {%- form 'customer_address', address -%}<input type="hidden" name="_method" value="delete"><button class="btn ghost sm" type="submit">Delete</button>{%- endform -%}</div>
+    {%- endfor -%}
+    <div class="card" style="margin-top:24px"><h2 class="h-sec" style="font-size:24px">Add a new address</h2>
+      {%- form 'customer_address', customer.new_address -%}
+        <div class="fgrid2"><div class="field full"><input id="af" type="text" name="address[first_name]" placeholder=" " required><label for="af">First name</label></div><div class="field full"><input id="al" type="text" name="address[last_name]" placeholder=" " required><label for="al">Last name</label></div><div class="field full"><input id="a1" type="text" name="address[address1]" placeholder=" " required><label for="a1">Address</label></div><div class="field full"><input id="ac" type="text" name="address[city]" placeholder=" " required><label for="ac">City</label></div><div class="field full"><input id="ap" type="text" name="address[province]" placeholder=" " required><label for="ap">State</label></div><div class="field full"><input id="az" type="text" name="address[zip]" placeholder=" " required><label for="az">ZIP code</label></div><input type="hidden" name="address[country]" value="United States"></div>
+        <label style="display:flex;gap:8px;margin-top:12px"><input type="checkbox" name="address[default]" value="1"> Set as default address</label>
+        <button class="btn block" type="submit" style="margin-top:16px">Save address</button>
+      {%- endform -%}
+    </div>
+  </div></section>
+</div>

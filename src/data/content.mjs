@@ -104,7 +104,7 @@ export const FAQ_GROUPS = [
     title: 'Safety & labeling',
     items: [
       ['Are these products safe during pregnancy?', 'Please consult a healthcare professional before use if you are pregnant, nursing or taking medication. Keep out of reach of children.'],
-      ['Do the products treat or cure any condition?', 'No. These statements have not been evaluated by the Food and Drug Administration. These products are not intended to diagnose, treat, cure, or prevent any disease. They are herbal supplements traditionally used to support wellness.'],
+      ['Are Veda powders a medicine?', 'No. Our powders are traditional herbal supplements, not medicines. They are not intended to diagnose or address any medical condition. If you have a health concern, please talk to your healthcare practitioner. These statements have not been evaluated by the Food and Drug Administration. These products are not intended to diagnose, treat, cure, or prevent any disease. They are herbal supplements traditionally used to support wellness.'],
       ['How do I report a complaint or adverse event?', 'Call +1 (713) 770-6032 or email hello@vedaapothecaryusa.com.'],
       ['Why do the Supplement Facts list botanical names?', 'U.S. labeling asks supplements to identify each botanical and the plant part used — for example Moringa oleifera (leaf) or Withania somnifera (root).']
     ]
