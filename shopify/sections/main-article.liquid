@@ -1,4 +1,6 @@
-{%- case article.handle -%}
+{%- comment -%} article.handle is "blog-handle/article-handle" in Shopify, so compare the last segment only. {%- endcomment -%}
+{%- assign article_slug = article.handle | split: "/" | last -%}
+{%- case article_slug -%}
   {%- when 'ashwagandha-101' -%}{% render 'article-ashwagandha-101' %}
   {%- when 'golden-moon-milk' -%}{% render 'article-golden-moon-milk' %}
   {%- when 'green-morning-smoothie' -%}{% render 'article-green-morning-smoothie' %}
