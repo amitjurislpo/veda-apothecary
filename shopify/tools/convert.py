@@ -325,7 +325,7 @@ def ajs(path):
 lines = ['<script>', 'window.VEDA = {',
          '  config: {',
          '    freeShip: %s, subOff: %s,' % (VEDA['config']['freeShip'], VEDA['config']['subOff']),
-         "    orderEmail: {{ shop.email | json }}, wholesaleEmail: \"wholesale@vedaapothecaryusa.com\",",
+         "    orderEmail: {{ shop.email | json }}, wholesaleEmail: \"billing@vedaapothecaryusa.com\",",
          '    routes: { root: {{ routes.root_url | json }}, cart: {{ routes.cart_url | json }}, cartAdd: {{ routes.cart_add_url | json }}, cartChange: {{ routes.cart_change_url | json }}, collectionsAll: {{ routes.all_products_collection_url | json }} },',
          "    moneyFormat: {{ shop.money_format | json }}",
          '  },',

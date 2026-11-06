@@ -18,7 +18,7 @@ export const ABOUT_FAQ = [
 
 export const CONTACT_FAQ = [
   ['How quickly will you reply to my message?', 'We reply to messages sent through this page or by email within one business day.'],
-  ['How do I report a complaint or an adverse event?', 'Call +1 (713) 770-6032 or email hello@vedaapothecaryusa.com. Please include the product name and the batch number printed on the pouch if you have it.'],
+  ['How do I report a complaint or an adverse event?', 'Call +1 (713) 770-6032 or email billing@vedaapothecaryusa.com. Please include the product name and the batch number printed on the pouch if you have it.'],
   ['What should I include when asking about an order?', 'Your order number and the email address used at checkout. If an item arrived damaged or incorrect, add a photo so we can resolve it quickly.'],
   ['Can I ask product or usage questions here?', 'Yes. Choose “Product question” in the Topic menu. For general guidance on using the powders, you can also browse the FAQ and the blog.'],
   ['Where is Veda Apothecary based?', 'Our U.S. office is in Katy, Texas, where Old Soul Goods Inc. distributes and ships every order.']
@@ -27,7 +27,7 @@ export const CONTACT_FAQ = [
 export const WHOLESALE_FAQ = [
   ['Which products are available wholesale?', 'The full range: Moringa, Ashwagandha, Triphala and Amla powders. Each is packed in an 8 oz (227 g) resealable pouch and is a product of India.'],
   ['Are the pouches retail-ready?', 'Yes. Every pouch carries a barcode and a Supplement Facts panel, so it can go straight onto a shelf.'],
-  ['How do I get wholesale pricing?', 'Complete the form on this page with your store name, location, business type and estimated monthly volume, or email wholesale@vedaapothecaryusa.com. We will send our price list and terms.'],
+  ['How do I get wholesale pricing?', 'Complete the form on this page with your store name, location, business type and estimated monthly volume, or email billing@vedaapothecaryusa.com. We will send our price list and terms.'],
   ['Who can apply for a wholesale account?', 'Independent wellness stores, natural-food grocers, spas and practitioners, online retailers and distributors can all use the business-type menu on the form.'],
   ['Who do I contact about a product complaint?', 'Questions, complaints and adverse events are handled by phone at +1 (713) 770-6032.']
 ];
@@ -36,7 +36,7 @@ export const SHIPPING_FAQ = [
   ['How long does standard shipping take?', 'Standard shipping takes 3–6 business days after your order ships, and orders ship within 1–2 business days. It is free over $50; otherwise $5.95.'],
   ['How much is express shipping?', 'Express shipping costs $12.95 and takes 1–3 business days.'],
   ['Can I return an opened pouch?', 'Because the products are ingestible, opened pouches cannot be returned unless they arrived damaged or defective. Unopened products can be returned within 30 days of delivery.'],
-  ['How do I start a return?', 'Email hello@vedaapothecaryusa.com with your order number. Return shipping is your responsibility unless the item arrived damaged or incorrect, and refunds go to your original payment method after inspection.'],
+  ['How do I start a return?', 'Email billing@vedaapothecaryusa.com with your order number. Return shipping is your responsibility unless the item arrived damaged or incorrect, and refunds go to your original payment method after inspection.'],
   ['What if my order arrives damaged?', 'Contact us right away with your order number and a photo and we will make it right.']
 ];
 
@@ -59,7 +59,7 @@ export const TERMS_FAQ = [
 export const ACCESSIBILITY_FAQ = [
   ['Which accessibility standard do you follow?', 'We aim to meet the Web Content Accessibility Guidelines (WCAG) 2.1 Level AA.'],
   ['What accessibility features does the site use?', 'Semantic page structure, descriptive links and image text, keyboard-friendly controls and sufficient color contrast.'],
-  ['How do I report an accessibility problem?', 'Email hello@vedaapothecaryusa.com or call +1 (713) 770-6032 and tell us what you were trying to do. We will do our best to respond within two business days.'],
+  ['How do I report an accessibility problem?', 'Email billing@vedaapothecaryusa.com or call +1 (713) 770-6032 and tell us what you were trying to do. We will do our best to respond within two business days.'],
   ['Can I get information in another format?', 'Yes. Contact us and tell us the format you need.']
 ];
 
