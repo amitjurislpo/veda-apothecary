@@ -17,8 +17,8 @@ export const SITE = {
     country: 'US',
     phone: '+1 (713) 770-6032',
     phoneHref: '+17137706032',
-    email: 'hello@vedaapothecaryusa.com',
-    wholesaleEmail: 'wholesale@vedaapothecaryusa.com',
+    email: 'billing@vedaapothecaryusa.com',
+    wholesaleEmail: 'billing@vedaapothecaryusa.com',
     hours: 'Mon–Fri, 9am–6pm CT'
   },
   // Cart hand-off. Leave empty to send cart contents to the order e-mail address instead.
@@ -32,7 +32,7 @@ export const SITE = {
     checkout: process.env.VEDA_CHECKOUT === 'shopify',
     variants: { moringa: '', ashwagandha: '', triphala: '', amla: '' }
   },
-  orderEmail: 'hello@vedaapothecaryusa.com',
+  orderEmail: 'billing@vedaapothecaryusa.com',
   // Newsletter / contact / wholesale forms post here when set (e.g. a Formspree or Basin endpoint).
   formEndpoint: '',
   freeShippingOver: 50,
